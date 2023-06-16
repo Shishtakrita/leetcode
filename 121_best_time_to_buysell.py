@@ -10,11 +10,10 @@ class Solution(object):
             return 0
 
         sum = 0
-        min = prices[0]
+        min_ = prices[0]
         for i in range(1, l):
-            if prices[i] < min:
-                min = prices[i]
-            sum = max(sum, prices[i]-min)
+            min_ = min(min_, prices[i])
+            sum = max(sum, prices[i]-min_)
 
         return sum
 

@@ -30,11 +30,6 @@ class Solution(object):
 
 
 
-
-
-        return anagram_pos
-
-
 if __name__ == '__main__':
     s = Solution()
     print(s.findAnagrams('cbaebabacd', 'abc'))
