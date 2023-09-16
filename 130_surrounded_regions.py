@@ -23,8 +23,6 @@ class UnionFind:
         return self.__root(p) == self.__root(q)
 
     def __root(self, x):
-        print('x is: ', x)
-        print(self.id)
         while x != self.id[x]:
             self.id[x] = self.id[self.id[x]]
             x = self.id[x]
@@ -44,24 +42,23 @@ class Solution:
             for j in range(lcol):
                 if (i == 0 or j == 0 or i == lrow - 1 or j == lcol - 1) and board[i][j] == 'O':
                     # connect to sentient node
-                    uf.union(i * lrow + j, lrow * lcol)
+                    uf.union(i * lcol + j, lrow * lcol)
                 else:
                     # connect O to surrounding O
                     if board[i][j] == 'O':
-                        print(i, lrow, j)
                         if i > 0 and board[i - 1][j] == 'O':
-                            uf.union(i * lrow + j, (i - 1) * lrow + j)
+                            uf.union(i * lcol + j, (i - 1) * lcol + j)
                         if i < lrow - 1 and board[i + 1][j] == 'O':
-                            uf.union(i * lrow + j, (i + 1) * lrow + j)
+                            uf.union(i * lcol + j, (i + 1) * lcol + j)
                         if j < lcol - 1 and board[i][j + 1] == 'O':
-                            uf.union(i * lrow + j, i * lrow + (j + 1))
+                            uf.union(i * lcol + j, i * lcol + (j + 1))
                         if j > 0 and board[i][j - 1] == 'O':
-                            uf.union(i * lrow + j, i * lrow + (j - 1))
+                            uf.union(i * lcol + j, i * lcol + (j - 1))
 
         for i in range(lrow):
             for j in range(lcol):
                 if board[i][j] == 'O':
-                    if not uf.is_connected(i * lrow + j, lrow * lcol):
+                    if not uf.is_connected(i * lcol + j, lrow * lcol):
                         board[i][j] = 'X'
 
 
